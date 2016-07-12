@@ -4,7 +4,7 @@ A site to attract volunteers using angular and nodeJS
 
 This site is being buit with Angular and NodeJS.
 
-the Endpoints use dwill be:
+the Endpoints used will be:
 
 
 a users route:
