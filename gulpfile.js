@@ -9,7 +9,7 @@ gulp.task('default',['html','css','js','watch'], function(){
 
 gulp.task('html', function() {
     gulp.src('./templates/*.html').pipe(gulp.dest('./public/templates'));
-    gulp.src('./templates/directives/*.html').pipe(gulp.dest('./public/templates/directives'));
+    gulp.src('./templates/*/*.html').pipe(gulp.dest('./public/templates'));
 
     gulp.src(`./index.html`)
         .pipe(gulp.dest('./public'))

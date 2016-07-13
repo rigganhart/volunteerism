@@ -2,21 +2,20 @@
 module.exports = function(app) {
     app.controller('eventsController', ['$scope', '$http', 'eventService', 'userService', function($scope, $http, eventService, userService) {
       $scope.eventList = eventService.getEvents();
-
-
-
+      $scope.userList = userService.getAllUsers();
+    
 
     }]);
 };
 
 },{}],2:[function(require,module,exports){
 module.exports = function(app) {
-    app.controller('loginController', ['$scope', '$http', function($scope, $http) {
+    app.controller('loginController', ['$scope', '$http', 'userService', function($scope, $http, userService) {
 
 
 
-      scope.login = function(){
-        
+      $scope.login = function(){
+        userService.login($scope.user,$scope.pass);
       }
 
     }]);
@@ -25,15 +24,60 @@ module.exports = function(app) {
 },{}],3:[function(require,module,exports){
 module.exports = function(app) {
     app.controller('myEventsController', ['$scope', '$http', 'eventService', 'userService', function($scope, $http, eventService, userService) {
-      $scope.myEvents= eventService.getMyEvents();
-
-
-
+      $scope.user = userService.getCurrentUser();
+      $scope.myEvents= eventService.getMyEvents($scope.user.fullName);
+      console.log("users full name", $scope.user.fullName);
 
     }]);
 };
 
 },{}],4:[function(require,module,exports){
+module.exports = function(app){
+
+app.directive('event', function(){
+
+return{
+  restrict: 'E',
+  templateUrl: 'templates/directives/event.html',
+  
+
+  replace: true,
+}
+
+});
+}
+
+},{}],5:[function(require,module,exports){
+module.exports = function(app){
+
+app.directive('signUp', function(){
+
+return{
+  restrict: 'E',
+  templateUrl: 'templates/directives/signUp.html',
+  
+  replace: true,
+}
+
+});
+}
+
+},{}],6:[function(require,module,exports){
+module.exports = function(app){
+
+app.directive('user', function(){
+
+return{
+  restrict: 'E',
+  templateUrl: 'templates/directives/user.html',
+
+  replace: true,
+}
+
+});
+}
+
+},{}],7:[function(require,module,exports){
 let app = angular.module('Volunteerism', ['ngRoute']);
 
 // Controllers
@@ -45,6 +89,11 @@ require('./controllers/myEventsController')(app);
 require('./services/eventService')(app);
 require('./services/userService')(app);
 
+
+// Directives
+require('./directives/eventDirective')(app)
+require('./directives/signUpDirective')(app)
+require('./directives/userDirective')(app)
 
 //router
 app.config(['$routeProvider', function ($routeProvider) {
@@ -67,7 +116,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 }]);
 
-},{"./controllers/eventsController":1,"./controllers/loginController":2,"./controllers/myEventsController":3,"./services/eventService":5,"./services/userService":6}],5:[function(require,module,exports){
+},{"./controllers/eventsController":1,"./controllers/loginController":2,"./controllers/myEventsController":3,"./directives/eventDirective":4,"./directives/signUpDirective":5,"./directives/userDirective":6,"./services/eventService":8,"./services/userService":9}],8:[function(require,module,exports){
 module.exports = function(app){
 
 
@@ -88,13 +137,18 @@ module.exports = function(app){
           // console.log("allsongs arrar", allSongList);
           return eventList
       },
-      getMyEvents: function(){
+      getMyEvents: function(username){
         $http({
               method: 'GET',
               url: 'http://localhost:3000/api/events.json',
           }).then(function(response) {
             console.log("my events", response);
-            angular.copy(response.data, myEventList);
+            angular.copy(response.data, eventList);
+            eventList.forEach(function(el){
+              if(el.host === username){
+                myEventList.push(el);
+              }
+            })
           })
           // console.log("allsongs arrar", allSongList);
           return myEventList
@@ -103,11 +157,11 @@ module.exports = function(app){
   }]);
 };
 
-},{}],6:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 module.exports = function(app){
 
 
-  app.factory('userService',['$http', function($http){
+  app.factory('userService',['$http', '$location', function($http, $location){
 
     let allUsers = [];
     let currentUser = {};
@@ -122,18 +176,33 @@ module.exports = function(app){
             angular.copy(response.data, allUsers);
               allUsers.forEach(function(el){
                 if (el.username === user) {
+                  console.log("users match!");
                   angular.copy(el, currentUser)
-                } else{
-                  alert("please create a user")
-                };
+                  $location.path('/myEvents');
+                }
               })
+              console.log("not in if statement", currentUser);
+              return currentUser;
           })
           // console.log("allsongs arrar", allSongList);
-          return currentUser
+      },
+      getCurrentUser: function() {
+       console.log("user info", currentUser);
+       return currentUser
+     },
+      getAllUsers: function(){
+        $http({
+              method: 'GET',
+              url: 'http://localhost:3000/api/users.json',
+          }).then(function(response) {
+            console.log("all users", response);
+            angular.copy(response.data, allUsers);
+          })
+          return allUsers
       },
 
     };
   }]);
 };
 
-},{}]},{},[4])
+},{}]},{},[7])

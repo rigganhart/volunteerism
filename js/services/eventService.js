@@ -18,13 +18,18 @@ module.exports = function(app){
           // console.log("allsongs arrar", allSongList);
           return eventList
       },
-      getMyEvents: function(){
+      getMyEvents: function(username){
         $http({
               method: 'GET',
               url: 'http://localhost:3000/api/events.json',
           }).then(function(response) {
             console.log("my events", response);
-            angular.copy(response.data, myEventList);
+            angular.copy(response.data, eventList);
+            eventList.forEach(function(el){
+              if(el.host === username){
+                myEventList.push(el);
+              }
+            })
           })
           // console.log("allsongs arrar", allSongList);
           return myEventList

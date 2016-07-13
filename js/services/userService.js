@@ -1,7 +1,7 @@
 module.exports = function(app){
 
 
-  app.factory('userService',['$http', function($http){
+  app.factory('userService',['$http', '$location', function($http, $location){
 
     let allUsers = [];
     let currentUser = {};
@@ -16,14 +16,29 @@ module.exports = function(app){
             angular.copy(response.data, allUsers);
               allUsers.forEach(function(el){
                 if (el.username === user) {
+                  console.log("users match!");
                   angular.copy(el, currentUser)
-                } else{
-                  alert("please create a user")
-                };
+                  $location.path('/myEvents');
+                }
               })
+              console.log("not in if statement", currentUser);
+              return currentUser;
           })
           // console.log("allsongs arrar", allSongList);
-          return currentUser
+      },
+      getCurrentUser: function() {
+       console.log("user info", currentUser);
+       return currentUser
+     },
+      getAllUsers: function(){
+        $http({
+              method: 'GET',
+              url: 'http://localhost:3000/api/users.json',
+          }).then(function(response) {
+            console.log("all users", response);
+            angular.copy(response.data, allUsers);
+          })
+          return allUsers
       },
 
     };

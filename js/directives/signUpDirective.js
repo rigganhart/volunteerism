@@ -1,12 +1,11 @@
 module.exports = function(app){
 
-app.directive('event', function(){
+app.directive('signUp', function(){
 
 return{
   restrict: 'E',
-  templateUrl: 'templates/directives/event.html',
+  templateUrl: 'templates/directives/signUp.html',
   
-
   replace: true,
 }
 

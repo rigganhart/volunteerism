@@ -3,8 +3,8 @@ module.exports = function(app) {
 
 
 
-      scope.login = function(){
-        userService.login();
+      $scope.login = function(){
+        userService.login($scope.user,$scope.pass);
       }
 
     }]);

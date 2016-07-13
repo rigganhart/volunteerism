@@ -10,6 +10,11 @@ require('./services/eventService')(app);
 require('./services/userService')(app);
 
 
+// Directives
+require('./directives/eventDirective')(app)
+require('./directives/signUpDirective')(app)
+require('./directives/userDirective')(app)
+
 //router
 app.config(['$routeProvider', function ($routeProvider) {
   $routeProvider

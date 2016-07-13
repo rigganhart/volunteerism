@@ -1,10 +1,11 @@
 <div class="myEventsBox">
   <div>
-<h1>My Events</h1>
+<h1>{{user.firstName}}'s Events</h1>
 </div>
   <div class="event" ng-repeat='event in myEvents'>
-    <h3>{{event.eventName}}</h1>
-    <h4>{{event.location}} on {{event.date}} </h2>
+    <h3>{{event.eventName}}</h3>
+    <h4>{{event.location}} on {{event.date}} </h4>
+    <h5>{{event.host}}</h5>
   <hr>
   </div>
 
