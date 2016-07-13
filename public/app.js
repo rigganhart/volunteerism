@@ -3,8 +3,21 @@ module.exports = function(app) {
     app.controller('eventsController', ['$scope', '$http', 'eventService', 'userService', function($scope, $http, eventService, userService) {
       $scope.eventList = eventService.getEvents();
       $scope.userList = userService.getAllUsers();
-    
+    //pagination:
+      $scope.pageNumber = 1;
+      $scope.itemsPePage =3;
 
+      $scope.eventPage = eventService.getPages($scope.pagenumber, $scope.itemsPePage);
+
+      $scope.next = function (){
+        $scope.pageNumber = $scope.pageNumber + 1;
+        $scope.eventPage = eventService.getPages($scope.pagenumber, $scope.itemsPePage);
+
+      };
+      $scope.prev =function (){
+        $scope.pageNumber = $scope.pageNumber - 1;
+        $scope.eventPage = eventService.getPages($scope.pagenumber, $scope.itemsPePage);
+      };
     }]);
 };
 
@@ -137,6 +150,7 @@ module.exports = function(app){
           // console.log("allsongs arrar", allSongList);
           return eventList
       },
+
       getMyEvents: function(username){
         $http({
               method: 'GET',
@@ -152,6 +166,11 @@ module.exports = function(app){
           })
           // console.log("allsongs arrar", allSongList);
           return myEventList
+      },
+
+      getPages: function(pageNum, perPage){
+        let start = (pageNum -1) * perPage;
+        return eventList.slice(start, start + perPage)
       },
     };
   }]);

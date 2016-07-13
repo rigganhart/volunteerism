@@ -18,13 +18,14 @@ nav a {
   border-radius: 9%;
   width: 40%;
   height: 20em;
-  margin: 0 auto; }
+  margin: -1% auto; }
 
 .eventsBox {
   border: solid 1em #00B93E;
   border-radius: 9%;
   width: 40%;
-  height: 20em; }
+  height: 20em;
+  margin-top: -.5%; }
 
 .event {
   overflow-x: scroll; }
@@ -34,7 +35,7 @@ nav a {
   border-radius: 9%;
   width: 40%;
   height: 20em;
-  float: right; }
+  float: left; }
 
 .v {
   font-size: 2em; }
@@ -47,8 +48,8 @@ nav a {
   margin: -2.5% 0 0 1%; }
 
 .bar h3 {
-  color: #00B93E;
+  color: white;
   float: right;
-  margin: 6% 4% 0 0;
+  margin: -0.5% 4% 0 0;
   font-family: 'Marck Script', cursive;
   font-size: 3em; }

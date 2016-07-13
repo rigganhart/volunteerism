@@ -18,6 +18,7 @@ module.exports = function(app){
           // console.log("allsongs arrar", allSongList);
           return eventList
       },
+
       getMyEvents: function(username){
         $http({
               method: 'GET',
@@ -33,6 +34,11 @@ module.exports = function(app){
           })
           // console.log("allsongs arrar", allSongList);
           return myEventList
+      },
+
+      getPages: function(pageNum, perPage){
+        let start = (pageNum -1) * perPage;
+        return eventList.slice(start, start + perPage)
       },
     };
   }]);
