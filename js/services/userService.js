@@ -10,7 +10,7 @@ module.exports = function(app){
       login: function(user,pass) {
         $http({
               method: 'GET',
-              url: 'http://localhost:3000/api/users.json',
+              url: '/users',
           }).then(function(response) {
             console.log("all users", response);
             angular.copy(response.data, allUsers);
@@ -33,7 +33,7 @@ module.exports = function(app){
       getAllUsers: function(){
         $http({
               method: 'GET',
-              url: 'http://localhost:3000/api/users.json',
+              url: '/users',
           }).then(function(response) {
             console.log("all users", response);
             angular.copy(response.data, allUsers);

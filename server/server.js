@@ -1,26 +1,71 @@
 'use strict'
 
 let http = require('http');
-let Hapi = require('hapi');
-let Inert = require('inert');
+let hapi = require('hapi');
+let inert = require('inert');
+let boom = require('boom');
 
-const server = new Hapi.Server();
+const server = new hapi.Server();
 server.connection({
   host: 'localhost',
-  port: 9000,
+  port: 7500,
 });
+
+server.register(inert, () => {});
 
 server.route({
   method: 'GET',
   path: '/users',
   handler: function (request, reply){
-    let nouns = [
-      'person',
-      'place',
-      'thing',
+    let users = [
+
+    {
+      "username": "riggan",
+      "password": "r",
+      "fullName": "Riggan Hart",
+      "firstName": "Riggan",
+      "lastName": "Hart",
+      "affiliation": "The Iron Yard",
+      "position": "student",
+      "contact": "555-8897",
+      "numberOfEvents": "2"
+    },
+    {
+      "username": "adam",
+    "password": "a",
+      "fullName": "Adam West",
+      "firstName": "Adam",
+      "lastName": "West",
+      "affiliation": "City of Quahog",
+      "position": "Mayor",
+      "contact": "555-5543",
+      "numberOfEvents": "10"
+    },
+    {
+      "username": "chet",
+      "password": "c",
+      "fullName": "Chet Hart",
+      "firstName": "Chet",
+      "lastName": "Hart",
+      "affiliation": "Western Tidewater Free Clinic",
+      "position": "CEO",
+      "contact": "555-4752",
+      "numberOfEvents": "5"
+    },
+    {
+      "username": "destiny",
+      "password": "d",
+      "fullName": "Destiny Brinson",
+      "firstName": "Destiny",
+      "lastName": "Brinson",
+      "affiliation": "Pet Helpers",
+      "position": "Cat Adoption Specialist",
+      "contact": "555-7768",
+      "numberOfEvents": "6"
+    }
     ];
 
-    return reply(nouns)
+    return reply(users)
   }
 });
 
@@ -29,7 +74,7 @@ server.route({
   path: '/events',
   handler: function (request, reply){
     let events = [
-      [{
+      {
         "eventName": "Kitten Mittens",
         "location": "Pet Helpers Charleston",
         "date": "12-12-16",
@@ -69,12 +114,24 @@ server.route({
         "volunteersNeeded": "100",
         "host": "Adam West"
     }
-]
+
 
     ];
 
     return reply(events)
   }
+});
+
+server.route({
+    method: 'GET',
+    path: '/{param*}',
+    handler: {
+        directory: {
+            path: 'public/',
+            redirectToSlash: true,
+            index: true
+        }
+    }
 });
 
 

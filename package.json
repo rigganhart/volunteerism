@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "boom": "^3.2.2",
     "gulp-browserify": "^0.5.1",
     "gulp-sass": "^2.3.2",
     "gulp-watch": "^4.3.8",

@@ -5,18 +5,18 @@ module.exports = function(app) {
       $scope.userList = userService.getAllUsers();
     //pagination:
       $scope.pageNumber = 1;
-      $scope.itemsPePage =3;
+      $scope.itemsPerPage = 3;
 
-      $scope.eventPage = eventService.getPages($scope.pagenumber, $scope.itemsPePage);
+      $scope.eventPage = eventService.getPages($scope.pageNumber, $scope.itemsPerPage);
 
       $scope.next = function (){
         $scope.pageNumber = $scope.pageNumber + 1;
-        $scope.eventPage = eventService.getPages($scope.pagenumber, $scope.itemsPePage);
+        $scope.eventPage = eventService.getPages($scope.pageNumber, $scope.itemsPerPage);
 
       };
       $scope.prev =function (){
         $scope.pageNumber = $scope.pageNumber - 1;
-        $scope.eventPage = eventService.getPages($scope.pagenumber, $scope.itemsPePage);
+        $scope.eventPage = eventService.getPages($scope.pageNumber, $scope.itemsPerPage);
       };
     }]);
 };
@@ -142,7 +142,7 @@ module.exports = function(app){
       getEvents: function() {
         $http({
               method: 'GET',
-              url: 'http://localhost:3000/api/events.json',
+              url: '/events',
           }).then(function(response) {
             console.log("all events", response);
             angular.copy(response.data, eventList);
@@ -154,7 +154,7 @@ module.exports = function(app){
       getMyEvents: function(username){
         $http({
               method: 'GET',
-              url: 'http://localhost:3000/api/events.json',
+              url: '/events',
           }).then(function(response) {
             console.log("my events", response);
             angular.copy(response.data, eventList);
@@ -169,7 +169,8 @@ module.exports = function(app){
       },
 
       getPages: function(pageNum, perPage){
-        let start = (pageNum -1) * perPage;
+        console.log(eventList);
+        let start = (pageNum - 1) * perPage;
         return eventList.slice(start, start + perPage)
       },
     };
@@ -189,7 +190,7 @@ module.exports = function(app){
       login: function(user,pass) {
         $http({
               method: 'GET',
-              url: 'http://localhost:3000/api/users.json',
+              url: '/users',
           }).then(function(response) {
             console.log("all users", response);
             angular.copy(response.data, allUsers);
@@ -212,7 +213,7 @@ module.exports = function(app){
       getAllUsers: function(){
         $http({
               method: 'GET',
-              url: 'http://localhost:3000/api/users.json',
+              url: '/users',
           }).then(function(response) {
             console.log("all users", response);
             angular.copy(response.data, allUsers);

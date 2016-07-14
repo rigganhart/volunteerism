@@ -1,12 +1,33 @@
+<div class="userInfo">
+  <h1>{{user.fullName}}</h1>
+  <h3>{{user.position}} at {{user.affiliation}}</h3>
+  <h4>Phone Number: {{user.contact}}</h4>
+  <h5>Events Posted: {{user.numberOfEvents}}</h5>
+  <div class="newEvent">
+    <h5>Create a new Event:</h5>
+    <form class="upload" action="index.html" method="post">
+      <input type="text" name="eventName" value="" placeholder="Event Name">
+      <input type="text" name="location" value="" placeholder="Location">
+      <input type="text" name="date" value="" placeholder="Date">
+      <input type="text" name="volunteersNeeded" value="" placeholder="# of Vols">
+      <input type="text" name="description" value="" placeholder="Description">
+      <button type="button" name="button">Upload</button>
+    </form>
+  </div>
+</div>
+
+
+
 <div class="myEventsBox">
-  <div>
+  <div class="containerHead">
 <h1>{{user.firstName}}'s Events</h1>
 </div>
+<div class="eventContainer"
   <div class="event" ng-repeat='event in myEvents'>
     <h3>{{event.eventName}}</h3>
     <h4>{{event.location}} on {{event.date}} </h4>
     <h5>{{event.host}}</h5>
   <hr>
   </div>
-
+</div>
 </div>

@@ -4,18 +4,18 @@ module.exports = function(app) {
       $scope.userList = userService.getAllUsers();
     //pagination:
       $scope.pageNumber = 1;
-      $scope.itemsPePage =3;
+      $scope.itemsPerPage = 3;
 
-      $scope.eventPage = eventService.getPages($scope.pagenumber, $scope.itemsPePage);
+      $scope.eventPage = eventService.getPages($scope.pageNumber, $scope.itemsPerPage);
 
       $scope.next = function (){
         $scope.pageNumber = $scope.pageNumber + 1;
-        $scope.eventPage = eventService.getPages($scope.pagenumber, $scope.itemsPePage);
+        $scope.eventPage = eventService.getPages($scope.pageNumber, $scope.itemsPerPage);
 
       };
       $scope.prev =function (){
         $scope.pageNumber = $scope.pageNumber - 1;
-        $scope.eventPage = eventService.getPages($scope.pagenumber, $scope.itemsPePage);
+        $scope.eventPage = eventService.getPages($scope.pageNumber, $scope.itemsPerPage);
       };
     }]);
 };

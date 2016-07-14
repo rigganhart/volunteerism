@@ -10,7 +10,7 @@ module.exports = function(app){
       getEvents: function() {
         $http({
               method: 'GET',
-              url: 'http://localhost:3000/api/events.json',
+              url: '/events',
           }).then(function(response) {
             console.log("all events", response);
             angular.copy(response.data, eventList);
@@ -22,7 +22,7 @@ module.exports = function(app){
       getMyEvents: function(username){
         $http({
               method: 'GET',
-              url: 'http://localhost:3000/api/events.json',
+              url: '/events',
           }).then(function(response) {
             console.log("my events", response);
             angular.copy(response.data, eventList);
@@ -37,7 +37,8 @@ module.exports = function(app){
       },
 
       getPages: function(pageNum, perPage){
-        let start = (pageNum -1) * perPage;
+        console.log(eventList);
+        let start = (pageNum - 1) * perPage;
         return eventList.slice(start, start + perPage)
       },
     };
