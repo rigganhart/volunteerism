@@ -4,6 +4,9 @@ let http = require('http');
 let hapi = require('hapi');
 let inert = require('inert');
 let boom = require('boom');
+let Events =require('./eventBucket');
+
+
 
 const server = new hapi.Server();
 server.connection({
@@ -127,7 +130,7 @@ server.route({
     path: '/{param*}',
     handler: {
         directory: {
-            path: 'public/',
+            path: '../public/',
             redirectToSlash: true,
             index: true
         }

@@ -1,12 +1,21 @@
+'use strict'
+
+module.exports = Events;
 function Events() {
-    this.event = {
-      id: 0,
-        eventName: "walkathon"
-        location: "everywhere"
-        date: "01-13-2017"
-        eventDescription:"walk all over the place"
-        volunteersNeeded:1000
-        host:"The World"
-    }
+    this.nextId = 0
+    this.events = []
+
     return this;
+}
+
+
+
+Events.prototype.add =function (event,user){
+  event.id= this.nextId++;
+  event.host = user.fullName;
+  this.events.push(event);
+}
+
+Events.prototype.getAll =function (){
+  return this.events;
 }
