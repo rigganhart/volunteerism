@@ -1,3 +1,8 @@
+body {
+  background-image: url("images/mountains.jpg");
+  background-repeat: no-repeat;
+  background-size: cover; }
+
 .bar {
   display: inline-block;
   width: 100%;
@@ -18,7 +23,8 @@ nav a {
   border-radius: 9%;
   width: 40%;
   height: 25em;
-  margin: -1% auto; }
+  margin: -1% auto;
+  background-color: rgba(127, 148, 232, 0.78); }
 
 .eventsBox {
   border: solid 1em #00B93E;
@@ -26,7 +32,8 @@ nav a {
   width: 40%;
   height: 25em;
   margin-top: -.5%;
-  overflow: scroll; }
+  overflow: scroll;
+  background-color: rgba(127, 148, 232, 0.78); }
 
 .myEventsBox {
   border: solid 1em #00B93E;
@@ -35,27 +42,28 @@ nav a {
   height: 25em;
   margin-top: -.5%;
   float: right;
-  overflow: scroll; }
+  overflow: scroll;
+  background-color: rgba(127, 148, 232, 0.78); }
 
 .v {
   font-size: 2em; }
 
 .bar h1 {
-  color: white;
+  color: #2357eb;
   font-family: 'Marck Script', cursive;
   font-size: 4em;
   display: inline-block;
   margin: -2.5% 0 0 1%; }
 
 .bar h3 {
-  color: white;
+  color: #2357eb;
   float: right;
   margin: -0.5% 4% 0 0;
   font-family: 'Marck Script', cursive;
   font-size: 3em; }
 
 .userInfo {
-  height: 27em;
+  height: 22em;
   width: 40%;
   display: inline-block;
   border-left: solid 1em #00B93E;
@@ -66,7 +74,9 @@ nav a {
   height: 12em;
   border: solid 1em #00B93E;
   border-radius: 28%;
-  text-align: center; }
+  text-align: center;
+  background-color: rgba(127, 148, 232, 0.78);
+  margin-left: -3%; }
 
 .upload {
   margin: 2% auto; }
