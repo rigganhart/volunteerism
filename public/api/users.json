@@ -1,0 +1,46 @@
+[
+  {
+    "username": "riggan",
+    "password": "r",
+    "fullName": "Riggan Hart",
+    "firstName": "Riggan",
+    "lastName": "Hart",
+    "affiliation": "The Iron Yard",
+    "position": "student",
+    "contact": "555-8897",
+    "numberOfEvents": "2"
+  },
+  {
+    "username": "adam",
+  "password": "a",
+    "fullName": "Adam West",
+    "firstName": "Adam",
+    "lastName": "West",
+    "affiliation": "City of Quahog",
+    "position": "Mayor",
+    "contact": "555-5543",
+    "numberOfEvents": "10"
+  },
+  {
+    "username": "chet",
+    "password": "c",
+    "fullName": "Chet Hart",
+    "firstName": "Chet",
+    "lastName": "Hart",
+    "affiliation": "Western Tidewater Free Clinic",
+    "position": "CEO",
+    "contact": "555-4752",
+    "numberOfEvents": "5"
+  },
+  {
+    "username": "destiny",
+    "password": "d",
+    "fullName": "Destiny Brinson",
+    "firstName": "Destiny",
+    "lastName": "Brinson",
+    "affiliation": "Pet Helpers",
+    "position": "Cat Adoption Specialist",
+    "contact": "555-7768",
+    "numberOfEvents": "6"
+  }
+]
